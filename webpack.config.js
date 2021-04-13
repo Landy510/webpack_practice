@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -11,6 +12,11 @@ module.exports = {
     compress: true,
     port: 9000,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
   module: {
     rules: [
       {
@@ -28,7 +34,10 @@ module.exports = {
           "sass-loader",
         ],
       },
-      
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      }
     ]
   }
 };
